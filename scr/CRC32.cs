@@ -45,7 +45,7 @@ namespace Valtec.scr
         {
             uint result = 0x04c11db7;
             result = ~result;
-            result = data.Aggregate(result, (current, t) => CrcTable[((int) (current ^ t)) & 0xff] ^ (current >> 8));
+            result = data.Aggregate(result, (current, t) => CrcTable[(int) (current ^ t) & 0xff] ^ (current >> 8));
             return ~result;
         }
     }

@@ -8,22 +8,22 @@ namespace Valtec.scr
         {
             var buffer = ToBytes(cmd);
 
-            UInt16 crc = 0xFFFF;
+            ushort crc = 0xFFFF;
 
-            for (int pos = 0; pos < buffer.Length; pos++)
+            for (var pos = 0; pos < buffer.Length; pos++)
             {
-                crc ^= (UInt16) buffer[pos];
+                crc ^= (ushort) buffer[pos];
 
-                for (int i = 8; i != 0; i--)
-                {
+                for (var i = 8; i != 0; i--)
                     if ((crc & 0x0001) != 0)
                     {
                         crc >>= 1;
                         crc ^= 0xA001;
                     }
                     else
+                    {
                         crc >>= 1;
-                }
+                    }
             }
 
             var crc16 = (ushort) ((crc >> 8) | (crc << 8));
@@ -32,11 +32,8 @@ namespace Valtec.scr
 
         private static byte[] ToBytes(string text)
         {
-            byte[] bytes = new byte[text.Length / 2];
-            for (int i = 0; i < text.Length; i += 2)
-            {
-                bytes[i / 2] = Convert.ToByte(text.Substring(i, 2), 16);
-            }
+            var bytes = new byte[text.Length / 2];
+            for (var i = 0; i < text.Length; i += 2) bytes[i / 2] = Convert.ToByte(text.Substring(i, 2), 16);
 
             return bytes;
         }

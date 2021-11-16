@@ -4,9 +4,12 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Modbus4Net" Version="1.0.2"/>
+        <PackageReference Include="NModbus" Version="3.0.62"/>
         <PackageReference Include="System.IO.Ports" Version="6.0.0"/>
     </ItemGroup>
 
